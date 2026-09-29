@@ -3,10 +3,8 @@
 <head>
 <base target="_top">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>UploadReady - Fix Image & PDF Upload Problems Online</title>
-<meta name="description" content="UploadReady checks and fixes common image and PDF upload problems. Compress, resize, convert, merge and split files directly in your browser.">
-<meta name="keywords" content="image compressor, PDF compressor, resize image, convert image, PDF tools, upload file checker, image upload problems">
-<link rel="canonical" href="https://ahmedkhaleeq2025-tech.github.io/uploadready/">
+<title>ImageKBFix | Image & PDF Tools</title>
+
 <!-- PDF ENGINES -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
@@ -16,10 +14,10 @@
 body{margin:0;font-family:Arial,sans-serif;background:#f3f6f9;color:#17202a}
 .wrap{max-width:1100px;margin:auto;padding:15px}
 .card{background:#fff;border-radius:18px;padding:20px;margin-bottom:18px;box-shadow:0 5px 22px rgba(0,0,0,.07)}
-.header{background:linear-gradient(135deg,#111827,#2563eb);color:#fff;border-radius:18px;padding:25px;margin-bottom:18px}
+.header{background:linear-gradient(135deg,#0f172a,#0d9488);color:#fff;border-radius:18px;padding:25px;margin-bottom:18px}
 .header h1{margin:0 0 7px;font-size:34px}.header p{margin:0;font-size:17px}
 .upload{display:block;border:2px dashed #9ca3af;border-radius:16px;padding:35px 15px;text-align:center;cursor:pointer;background:#fafafa}
-.upload:hover{border-color:#2563eb;background:#f5f8ff}
+.upload:hover{border-color:#0d9488;background:#f5f8ff}
 .upload .icon{font-size:45px}.upload h2{margin:8px 0;font-size:25px}.upload p{color:#64748b}
 input[type=file]{display:none}
 .fileinfo{display:none;margin-top:14px;padding:14px;background:#f8fafc;border-radius:12px}
@@ -28,7 +26,7 @@ input[type=file]{display:none}
 .info-box b,.result-box b{display:block;font-size:18px;margin-top:5px}
 .status{display:none;padding:13px;border-radius:10px;margin-top:13px;font-weight:700}
 .status.show{display:block}.status.success{background:#dcfce7;color:#166534}
-.status.error{background:#fee2e2;color:#991b1b}.status.info{background:#dbeafe;color:#1e40af}
+.status.error{background:#fee2e2;color:#991b1b}.status.info{background:#dbeafe;color:#0f766e}
 .status.warn{background:#ffedd5;color:#9a3412}
 .checker h2{margin:0;font-size:24px}.sub,.desc{color:#64748b;line-height:1.55}
 .overall{padding:14px;border-radius:11px;font-weight:700;line-height:1.5}
@@ -41,7 +39,7 @@ input[type=file]{display:none}
 .check b{display:block;margin-bottom:5px}
 .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
 .tab{border:0;border-radius:10px;padding:13px 18px;background:#e5e7eb;font-size:16px;font-weight:700;cursor:pointer}
-.tab.active{background:#2563eb;color:#fff}
+.tab.active{background:#0d9488;color:#fff}
 .tool{display:none}.tool.active{display:block}
 .tool h2{font-size:26px;margin:4px 0 8px}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
@@ -50,15 +48,15 @@ input[type=file]{display:none}
 .checkrow{display:flex;align-items:center;gap:9px;margin:13px 0}
 .checkrow input{transform:scale(1.25)}
 button{border:0;border-radius:10px;padding:13px 17px;font-size:16px;font-weight:700;cursor:pointer}
-.primary{width:100%;background:#2563eb;color:#fff;margin-top:12px}
+.primary{width:100%;background:#0d9488;color:#fff;margin-top:12px}
 .success{background:#16a34a;color:#fff}.dark{background:#111827;color:#fff}
 .light{background:#e2e8f0;color:#17202a}.danger{background:#dc2626;color:#fff}
 .quick,.presets,.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:9px}
 .quick button,.presets button{padding:9px 12px;background:#fff;border:1px solid #cbd5e1}
-.note{background:#eff6ff;border-left:4px solid #2563eb;padding:13px;border-radius:8px;margin-top:13px;line-height:1.55}
+.note{background:#eff6ff;border-left:4px solid #0d9488;padding:13px;border-radius:8px;margin-top:13px;line-height:1.55}
 .manual{background:#f1f5f9;border-radius:14px;padding:15px;margin-top:15px}
 .manual h3{margin:0 0 13px}.zoom{display:flex;align-items:center;gap:8px}
-.zoom input{flex:1}.zoom button{width:50px;height:48px;padding:0;background:#2563eb;color:#fff;font-size:25px}
+.zoom input{flex:1}.zoom button{width:50px;height:48px;padding:0;background:#0d9488;color:#fff;font-size:25px}
 .zoom b{min-width:60px;text-align:center}
 .pos{display:grid;grid-template-columns:55px 55px 55px;justify-content:center;gap:7px;margin-top:12px}
 .pos button{height:50px;padding:0;background:#334155;color:#fff;font-size:22px}.empty{visibility:hidden}
@@ -100,8 +98,8 @@ canvas{max-width:100%;height:auto;border:2px solid #cbd5e1;border-radius:8px;bac
 <div class="wrap">
 
 <div class="header">
-<h1>UPLOADREADY</h1>
-<p>Fix your file before you upload it.</p>
+<h1>ImageKBFix</h1>
+<p>Free image & PDF tools — fix your file before you upload it.</p>
 </div>
 
 
@@ -1552,9 +1550,9 @@ link.download=
 (
 imageFile
 ?imageFile.name.replace(/\.[^/.]+$/,"")
-:"uploadready"
+:"ImageKBFix"
 )+
-"_UPLOADREADY."+
+"_ImageKBFix."+
 ext(mime);
 
 $("imageResult").scrollIntoView({
@@ -2619,7 +2617,7 @@ PDF created: ${bytes(blob.size)}
 <a
 class="download"
 href="${url}"
-download="UPLOADREADY_images.pdf"
+download="ImageKBFix_images.pdf"
 >
 ⬇ Download PDF
 </a>
@@ -2895,7 +2893,7 @@ Merged PDF: ${bytes(blob.size)}
 <a
 class="download"
 href="${url}"
-download="UPLOADREADY_merged.pdf"
+download="ImageKBFix_merged.pdf"
 >
 ⬇ Download Merged PDF
 </a>
@@ -3121,16 +3119,6 @@ showStatus(
 countryChanged();
 
 </script>
-
-<footer style="text-align:center; padding:25px 10px; margin-top:30px; border-top:1px solid #ddd; font-size:14px;">
-  <a href="about.html" style="margin:0 10px; color:#2563eb; text-decoration:none;">
-    About UploadReady
-  </a>
-  |
-  <a href="privacy.html" style="margin:0 10px; color:#2563eb; text-decoration:none;">
-    Privacy Policy
-  </a>
-</footer>
 
 </body>
 </html>
