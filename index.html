@@ -1,9 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="utf-8">
 <base target="_top">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>ImageKBFix | Image & PDF Tools</title>
+<meta name="description" content="Compress, resize and convert images, prepare country photo sizes, and work with PDFs in your browser using ImageKBFix.">
+<link rel="canonical" href="https://ahmedkhaleeq2025-tech.github.io/imagekbfix/">
+<meta property="og:title" content="ImageKBFix — Fix Your Files">
+<meta property="og:description" content="Free browser-based tools for image and PDF upload requirements.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ahmedkhaleeq2025-tech.github.io/imagekbfix/">
 
 <!-- PDF ENGINES -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
@@ -14,19 +21,19 @@
 body{margin:0;font-family:Arial,sans-serif;background:#f3f6f9;color:#17202a}
 .wrap{max-width:1100px;margin:auto;padding:15px}
 .card{background:#fff;border-radius:18px;padding:20px;margin-bottom:18px;box-shadow:0 5px 22px rgba(0,0,0,.07)}
-.header{background:linear-gradient(135deg,#0f172a,#0d9488);color:#fff;border-radius:18px;padding:25px;margin-bottom:18px}
+.header{background:linear-gradient(135deg,#0f172a,#2563eb);color:#fff;border-radius:18px;padding:25px;margin-bottom:18px}
 .header h1{margin:0 0 7px;font-size:34px}.header p{margin:0;font-size:17px}
 .upload{display:block;border:2px dashed #9ca3af;border-radius:16px;padding:35px 15px;text-align:center;cursor:pointer;background:#fafafa}
-.upload:hover{border-color:#0d9488;background:#f5f8ff}
+.upload:hover{border-color:#2563eb;background:#f5f8ff}
 .upload .icon{font-size:45px}.upload h2{margin:8px 0;font-size:25px}.upload p{color:#64748b}
-input[type=file]{display:none}
+input[type=file]:not(.main-file-input){display:none}
 .fileinfo{display:none;margin-top:14px;padding:14px;background:#f8fafc;border-radius:12px}
 .info-grid,.result-grid,.checks{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
 .info-box,.result-box{background:#fff;border-radius:10px;padding:12px;text-align:center}
 .info-box b,.result-box b{display:block;font-size:18px;margin-top:5px}
 .status{display:none;padding:13px;border-radius:10px;margin-top:13px;font-weight:700}
 .status.show{display:block}.status.success{background:#dcfce7;color:#166534}
-.status.error{background:#fee2e2;color:#991b1b}.status.info{background:#dbeafe;color:#0f766e}
+.status.error{background:#fee2e2;color:#991b1b}.status.info{background:#dbeafe;color:#1d4ed8}
 .status.warn{background:#ffedd5;color:#9a3412}
 .checker h2{margin:0;font-size:24px}.sub,.desc{color:#64748b;line-height:1.55}
 .overall{padding:14px;border-radius:11px;font-weight:700;line-height:1.5}
@@ -39,7 +46,7 @@ input[type=file]{display:none}
 .check b{display:block;margin-bottom:5px}
 .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
 .tab{border:0;border-radius:10px;padding:13px 18px;background:#e5e7eb;font-size:16px;font-weight:700;cursor:pointer}
-.tab.active{background:#0d9488;color:#fff}
+.tab.active{background:#2563eb;color:#fff}
 .tool{display:none}.tool.active{display:block}
 .tool h2{font-size:26px;margin:4px 0 8px}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
@@ -48,15 +55,15 @@ input[type=file]{display:none}
 .checkrow{display:flex;align-items:center;gap:9px;margin:13px 0}
 .checkrow input{transform:scale(1.25)}
 button{border:0;border-radius:10px;padding:13px 17px;font-size:16px;font-weight:700;cursor:pointer}
-.primary{width:100%;background:#0d9488;color:#fff;margin-top:12px}
+.primary{width:100%;background:#2563eb;color:#fff;margin-top:12px}
 .success{background:#16a34a;color:#fff}.dark{background:#111827;color:#fff}
 .light{background:#e2e8f0;color:#17202a}.danger{background:#dc2626;color:#fff}
 .quick,.presets,.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:9px}
 .quick button,.presets button{padding:9px 12px;background:#fff;border:1px solid #cbd5e1}
-.note{background:#eff6ff;border-left:4px solid #0d9488;padding:13px;border-radius:8px;margin-top:13px;line-height:1.55}
+.note{background:#eff6ff;border-left:4px solid #2563eb;padding:13px;border-radius:8px;margin-top:13px;line-height:1.55}
 .manual{background:#f1f5f9;border-radius:14px;padding:15px;margin-top:15px}
 .manual h3{margin:0 0 13px}.zoom{display:flex;align-items:center;gap:8px}
-.zoom input{flex:1}.zoom button{width:50px;height:48px;padding:0;background:#0d9488;color:#fff;font-size:25px}
+.zoom input{flex:1}.zoom button{width:50px;height:48px;padding:0;background:#2563eb;color:#fff;font-size:25px}
 .zoom b{min-width:60px;text-align:center}
 .pos{display:grid;grid-template-columns:55px 55px 55px;justify-content:center;gap:7px;margin-top:12px}
 .pos button{height:50px;padding:0;background:#334155;color:#fff;font-size:22px}.empty{visibility:hidden}
@@ -90,32 +97,100 @@ canvas{max-width:100%;height:auto;border:2px solid #cbd5e1;border-radius:8px;bac
 .actions button{flex:1;min-width:160px}
 .page-grid{grid-template-columns:1fr}
 }
+
+:focus-visible{outline:3px solid #7c3aed;outline-offset:3px}
+.skip-link{position:absolute;left:12px;top:-60px;padding:10px 14px;background:#fff;color:#111827;border-radius:8px;z-index:20}
+.skip-link:focus{top:12px}
+.header-top{display:flex;justify-content:space-between;align-items:flex-start;gap:18px}
+.header .eyebrow{font-size:13px;letter-spacing:.06em;text-transform:uppercase;opacity:.9;margin-bottom:8px}
+.header h1{max-width:720px;font-size:clamp(30px,5vw,46px);line-height:1.08}
+.header .brand-subtitle{max-width:650px;line-height:1.55;margin-top:12px}
+.site-nav{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+.site-nav a,.theme-toggle{color:#fff;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.34);border-radius:9px;padding:9px 13px;text-decoration:none;font-weight:700}
+.site-nav a:hover,.theme-toggle:hover{background:rgba(255,255,255,.22)}
+.theme-toggle{font-size:14px;white-space:nowrap}
+.tool-directory h2,.content-section h2{margin-top:0}
+.tool-search{width:100%;min-height:52px;padding:12px 15px;border:1px solid #cbd5e1;border-radius:12px;font:inherit;font-size:17px;background:#fff;color:#17202a}
+.tool-card-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:15px}
+.tool-card{display:flex;flex-direction:column;gap:7px;padding:17px;border:1px solid #e2e8f0;border-radius:14px;background:#fff;color:#17202a;text-decoration:none;box-shadow:0 3px 12px rgba(15,23,42,.05);transition:transform .15s ease,box-shadow .15s ease}
+.tool-card:hover{transform:translateY(-2px);box-shadow:0 9px 22px rgba(15,23,42,.1)}
+.tool-card strong{font-size:17px}.tool-card .tool-category{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#475569;font-weight:700}
+.tool-icon{font-size:24px}.tool-card[hidden]{display:none}
+.tool-empty{padding:16px;border-radius:10px;background:#f8fafc;color:#475569}
+.content-section{line-height:1.65}
+.content-section ul,.content-section ol{padding-left:22px}
+.faq-list details{padding:13px 0;border-bottom:1px solid #e2e8f0}
+.faq-list summary{font-weight:700;cursor:pointer}
+.result-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
+.main-file-input{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;clip-path:inset(50%)!important;white-space:nowrap!important;border:0!important}
+#imageUploadBox:focus-within{outline:3px solid #7c3aed;outline-offset:3px}
+body.dark-mode{background:#111827;color:#f8fafc;color-scheme:dark}
+body.dark-mode .card,body.dark-mode .fileinfo,body.dark-mode .info-box,body.dark-mode .result-box,body.dark-mode .check,body.dark-mode .manual,body.dark-mode .preview,body.dark-mode .pdf-file-list,body.dark-mode .tool-card,body.dark-mode .tool-search{background:#1f2937;color:#f8fafc;border-color:#475569}
+body.dark-mode .desc,body.dark-mode .sub,body.dark-mode .privacy,body.dark-mode .footer,body.dark-mode .content-section,body.dark-mode .tool-card .tool-category{color:#cbd5e1}
+body.dark-mode .tool-empty{background:#334155;color:#f8fafc}
+body.dark-mode .field input,body.dark-mode .field select,body.dark-mode input[type=number],body.dark-mode input[type=text],body.dark-mode input[type=search]{background:#111827;color:#f8fafc;border-color:#64748b}
+body.dark-mode .quick button,body.dark-mode .presets button{background:#334155;color:#f8fafc;border-color:#64748b}
+body.dark-mode .overall.neutral{background:#334155;color:#f8fafc}
+@media(max-width:700px){.header-top{display:block}.theme-toggle{margin-top:15px}.tool-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.result-grid{grid-template-columns:1fr}}
+@media(max-width:430px){.tool-card-grid{grid-template-columns:1fr}.site-nav a{flex:1;text-align:center}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
 </style>
 </head>
 
 <body>
 
-<div class="wrap">
+<a class="skip-link" href="#main-content">Skip to tools</a>
+<div class="wrap" id="main-content">
 
-<div class="header">
-<h1>ImageKBFix</h1>
-<p>Free image & PDF tools — fix your file before you upload it.</p>
+<div class="header" id="top">
+  <div class="header-top">
+    <div>
+      <p class="eyebrow">ImageKBFix · free browser-based file tools</p>
+      <h1>Fix Your Files. Meet Every Upload Requirement.</h1>
+      <p class="brand-subtitle">Compress, resize, and convert images, prepare photo dimensions, and work with PDFs before you upload or share.</p>
+    </div>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false">Dark mode</button>
+  </div>
+  <nav class="site-nav" aria-label="Main navigation">
+    <a href="#top">Home</a><a href="#tool-directory">Image Tools</a><a href="#pdfTools">PDF Tools</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+  </nav>
 </div>
 
+
+<section id="tool-directory" class="card tool-directory" aria-labelledby="tool-directory-heading">
+  <h2 id="tool-directory-heading">Popular tools</h2>
+  <p class="desc">Search by task or format. Choose a tool to start; your selected file stays in your browser during processing.</p>
+  <label for="toolSearch">Search for a tool</label>
+  <input class="tool-search" id="toolSearch" type="search" placeholder="Search for a file tool..." autocomplete="off" aria-describedby="toolSearchStatus">
+  <p id="toolSearchStatus" class="sub" role="status" aria-live="polite">11 tools available.</p>
+  <div class="tool-card-grid" id="toolCards">
+    <a class="tool-card" href="compress-image.html" data-search="compress image reduce file size jpg jpeg png webp target kb upload"><span class="tool-icon" aria-hidden="true">📦</span><span class="tool-category">Image tool</span><strong>Compress Image</strong><span>Reduce image size and check the result before downloading.</span></a>
+    <a class="tool-card" href="resize-image.html" data-search="resize image width height dimensions pixels jpg jpeg png webp"><span class="tool-icon" aria-hidden="true">📐</span><span class="tool-category">Image tool</span><strong>Resize Image</strong><span>Set new dimensions and preserve proportions when needed.</span></a>
+    <a class="tool-card" href="signature-resizer.html" data-search="signature resizer image size dimensions compress file requirement"><span class="tool-icon" aria-hidden="true">✍️</span><span class="tool-category">Image tool</span><strong>Signature Resizer</strong><span>Resize a signature to custom dimensions and a best-effort file size.</span></a>
+    <a class="tool-card" href="jpg-to-png.html" data-search="jpg jpeg to png convert image"><span class="tool-icon" aria-hidden="true">🔄</span><span class="tool-category">Image tool</span><strong>JPG to PNG</strong><span>Convert a JPEG image to PNG in your browser.</span></a>
+    <a class="tool-card" href="png-to-jpg.html" data-search="png to jpg jpeg convert image transparency white"><span class="tool-icon" aria-hidden="true">🖼️</span><span class="tool-category">Image tool</span><strong>PNG to JPG</strong><span>Convert to JPG; transparent areas become white.</span></a>
+    <a class="tool-card" href="#imageUploadBox" data-search="passport photo country photo maker crop resize identity id document"><span class="tool-icon" aria-hidden="true">🪪</span><span class="tool-category">Image tool</span><strong>Country Photo Maker</strong><span>Upload an image, then choose Photo Maker and verify official requirements.</span></a>
+    <a class="tool-card" href="compress-pdf.html" data-search="compress pdf reduce file size document"><span class="tool-icon" aria-hidden="true">📄</span><span class="tool-category">PDF tool</span><strong>Compress PDF</strong><span>Reduce PDF size in the browser; page text may become non-selectable.</span></a>
+    <a class="tool-card" href="#pdfTools" data-pdf-target="imagePdf" data-search="jpg jpeg png webp image to pdf create document"><span class="tool-icon" aria-hidden="true">🗂️</span><span class="tool-category">PDF tool</span><strong>Images to PDF</strong><span>Combine selected images into a PDF.</span></a>
+    <a class="tool-card" href="#pdfTools" data-pdf-target="pdfJpg" data-search="pdf to jpg jpeg convert pages images"><span class="tool-icon" aria-hidden="true">🧾</span><span class="tool-category">PDF tool</span><strong>PDF to JPG</strong><span>Render PDF pages as downloadable JPG images.</span></a>
+    <a class="tool-card" href="#pdfTools" data-pdf-target="mergePdf" data-search="merge combine pdf files join"><span class="tool-icon" aria-hidden="true">🔗</span><span class="tool-category">PDF tool</span><strong>Merge PDFs</strong><span>Join two or more PDF files in the selected order.</span></a>
+    <a class="tool-card" href="#pdfTools" data-pdf-target="splitPdf" data-search="split extract pages pdf range"><span class="tool-icon" aria-hidden="true">✂️</span><span class="tool-category">PDF tool</span><strong>Split PDF</strong><span>Extract selected page numbers or page ranges.</span></a>
+  </div>
+  <p id="toolEmptyState" class="tool-empty" hidden>No tools match that search. Try a format such as JPG or PDF.</p>
+</section>
 
 <!-- UNIVERSAL IMAGE UPLOAD -->
 
 <div class="card">
 
-<label class="upload" id="imageUploadBox">
+<label class="upload" id="imageUploadBox" for="fileInput">
 
 <div class="icon">📤</div>
 <h2>Upload your image</h2>
-<p>JPG, PNG or WebP • Click or drag & drop</p>
+<p>JPG, PNG or WebP · Up to 25 MB · Click or drag & drop</p>
 <small>Image processing happens inside your browser.</small>
 
-<input id="fileInput" type="file"
-accept="image/jpeg,image/png,image/webp,image/*">
+<input id="fileInput" class="main-file-input" type="file" accept="image/jpeg,image/png,image/webp" aria-label="Choose a JPG, PNG, or WebP image">
 
 </label>
 
@@ -133,14 +208,14 @@ accept="image/jpeg,image/png,image/webp,image/*">
 </div>
 </div>
 
-<div id="status" class="status"></div>
+<div id="status" class="status" role="status" aria-live="polite"></div>
 
 </div>
 
 
 <!-- IMAGE PROBLEM CHECKER -->
 
-<div class="card checker">
+<div class="card checker" id="image-tools">
 
 <h2>🔎 Upload Problem Checker</h2>
 
@@ -199,9 +274,9 @@ Reduce image size while keeping the image as clear as possible.
 
 <div class="field">
 
-<label>Target file size (KB)</label>
+<label for="targetKB">Target file size (KB)</label>
 
-<input id="targetKB" type="number" min="5" value="200">
+<input id="targetKB" type="number" min="5" max="50000" value="200">
 
 <div class="quick">
 
@@ -209,6 +284,7 @@ Reduce image size while keeping the image as clear as possible.
 <button onclick="setQuickSize(50)">50 KB</button>
 <button onclick="setQuickSize(100)">100 KB</button>
 <button onclick="setQuickSize(200)">200 KB</button>
+<button onclick="setQuickSize(500)">500 KB</button>
 
 </div>
 
@@ -245,18 +321,23 @@ Compress Image
 Set exact width and height in pixels.
 </p>
 
-<div class="grid">
-
 <div class="field">
-<label>Width (px)</label>
-<input id="resizeW" type="number" value="600">
+<label for="resizeMode">Resize by</label>
+<select id="resizeMode"><option value="pixels">Pixels</option><option value="percent">Percentage</option></select>
 </div>
-
+<div class="grid" id="resizePixelFields">
 <div class="field">
-<label>Height (px)</label>
-<input id="resizeH" type="number" value="600">
+<label for="resizeW">Width (px)</label>
+<input id="resizeW" type="number" min="1" max="12000" value="600">
 </div>
-
+<div class="field">
+<label for="resizeH">Height (px)</label>
+<input id="resizeH" type="number" min="1" max="12000" value="600">
+</div>
+</div>
+<div id="resizePercentField" class="field" hidden>
+<label for="resizePercent">Scale (%)</label>
+<input id="resizePercent" type="number" min="1" max="500" step="1" value="100">
 </div>
 
 <div class="checkrow">
@@ -290,6 +371,7 @@ Convert JPG, PNG or WebP into another image format.
 <option value="image/png">PNG</option>
 <option value="image/webp">WebP</option>
 </select>
+<p class="note">JPG cannot preserve transparency; transparent pixels will be placed on a white background when JPG is selected.</p>
 
 </div>
 
@@ -462,7 +544,7 @@ Create Photo
 
 <!-- PDF WORKSPACE -->
 
-<div class="card">
+<div class="card" id="pdfTools">
 
 <h2 style="margin-top:0">📄 PDF Tools</h2>
 
@@ -711,6 +793,7 @@ Create Split PDF
 
 <div class="result-box">Original<b id="rOriginal">-</b></div>
 <div class="result-box">After<b id="rAfter">-</b></div>
+<div class="result-box">Reduction<b id="rReduction">-</b></div>
 <div class="result-box">Format<b id="rFormat">-</b></div>
 <div class="result-box">Status<b id="rStatus">-</b></div>
 
@@ -729,8 +812,27 @@ Create Split PDF
 </div>
 
 
+
+<section class="card content-section" id="how-it-works">
+  <h2>How it works</h2>
+  <ol><li>Select your image or PDF.</li><li>Choose the tool and settings you need.</li><li>Review the result, then download it.</li></ol>
+</section>
+<section class="card content-section" id="why-imagekbfix">
+  <h2>Why ImageKBFix</h2>
+  <ul><li>Simple tools with no account required.</li><li>Browser-based processing for the supported image and PDF tools.</li><li>Clear file size and dimension information before and after processing.</li><li>Responsive controls for mobile and desktop.</li></ul>
+</section>
+<section class="card content-section faq-list" id="faq">
+  <h2>Frequently asked questions</h2>
+  <details><summary>Is ImageKBFix free?</summary><p>The tools currently available on this site are free to use and do not require registration.</p></details>
+  <details><summary>Are my files uploaded to a server?</summary><p>The implemented tools process selected files in your browser and do not intentionally upload them to an ImageKBFix server. PDF processing libraries are fetched from third-party CDNs.</p></details>
+  <details><summary>Which formats are supported?</summary><p>The image tools support JPG/JPEG, PNG, and WebP. The PDF workspace supports the PDF operations shown on this page.</p></details>
+  <details><summary>Can I use ImageKBFix on mobile?</summary><p>The interface adapts to mobile screens. Processing capacity depends on the device and browser memory.</p></details>
+  <details><summary>Can image compression guarantee an exact file size?</summary><p>No. The target is a best-effort limit; the output size depends on the image and browser encoder.</p></details>
+  <details><summary>Is there a file size limit?</summary><p>The image upload tool accepts files up to 25 MB and images up to 40 megapixels. PDF processing is limited by available browser memory.</p></details>
+</section>
+
 <div class="privacy">
-Your image and PDF files are processed directly in your browser and are not intentionally uploaded or stored on our servers.
+Files are processed in your browser and are not intentionally uploaded by these tools. PDF tools load their processing libraries from third-party CDNs.
 </div>
 
 <div class="footer">
@@ -787,19 +889,13 @@ $("status").textContent=text;
 }
 
 function blobFromCanvas(canvas,mime,quality){
-
-return new Promise(function(resolve){
-
+return new Promise(function(resolve,reject){
 canvas.toBlob(function(blob){
-
-resolve(blob);
-
+if(blob)resolve(blob);
+else reject(new Error("This browser could not export the image in that format."));
 },mime,quality);
-
 });
-
 }
-
 
 /* =========================================================
    IMAGE VARIABLES
@@ -808,6 +904,10 @@ resolve(blob);
 let imageFile=null;
 let imageObj=null;
 let imageResultBlob=null;
+let resizeEdited="width";
+let activeImageResultUrl=null;
+const MAX_IMAGE_BYTES=25*1024*1024;
+const MAX_IMAGE_PIXELS=40000000;
 
 let photoZoom=1.18;
 let photoX=0;
@@ -846,74 +946,50 @@ loadImageFile(e.dataTransfer.files[0]);
 
 
 function loadImageFile(file){
-
-if(!file || !file.type.startsWith("image/")){
-
-showStatus("Please choose an image file.","error");
-
+if(activeImageResultUrl){URL.revokeObjectURL(activeImageResultUrl);activeImageResultUrl=null;}
+imageFile=null;imageObj=null;imageResultBlob=null;$("imageResult").style.display="none";$("imageWorkspace").style.display="none";$("fileInfo").style.display="none";resetChecker();
+const supported=["image/jpeg","image/png","image/webp"];
+if(!file || !supported.includes(file.type)){
+showStatus("Choose a JPG, PNG, or WebP image.","error");
 return;
-
 }
-
-imageFile=file;
-
-let reader=new FileReader();
-
-reader.onload=function(e){
-
-let im=new Image();
-
+if(file.size>MAX_IMAGE_BYTES){
+showStatus("This image is over the 25 MB limit. Choose a smaller file.","error");
+return;
+}
+const objectUrl=URL.createObjectURL(file);
+const im=new Image();
 im.onload=function(){
-
-imageObj=im;
-
-$("fileInfo").style.display="block";
-
-$("fileName").textContent=file.name;
-
-$("origSize").textContent=bytes(file.size);
-
-$("origDim").textContent=
-im.naturalWidth+" × "+im.naturalHeight;
-
-$("origFormat").textContent=mimeName(file.type);
-
-$("origStatus").textContent="Ready";
-
-$("imageWorkspace").style.display="block";
-
-photoZoom=1.18;
-photoX=0;
-photoY=0;
-
-$("smartZoom").checked=true;
-
-updateZoom();
-
-countryChanged();
-
-runChecker();
-
-drawPreview();
-
-showStatus("Image loaded successfully.","success");
-
-};
-
-im.onerror=function(){
-
-showStatus("Could not read this image.","error");
-
-};
-
-im.src=e.target.result;
-
-};
-
-reader.readAsDataURL(file);
-
+URL.revokeObjectURL(objectUrl);
+if($("fileInput").files[0]!==file)return;
+if(im.naturalWidth*im.naturalHeight>MAX_IMAGE_PIXELS){
+showStatus("This image is over the 40 megapixel limit. Resize it before using this tool.","error");
+return;
 }
-
+if(activeImageResultUrl){URL.revokeObjectURL(activeImageResultUrl);activeImageResultUrl=null;}
+imageFile=file;
+imageObj=im;
+$("resizeW").value=im.naturalWidth;
+$("resizeH").value=im.naturalHeight;
+resizeEdited="width";
+$("fileInfo").style.display="block";
+$("fileName").textContent=file.name;
+$("origSize").textContent=bytes(file.size);
+$("origDim").textContent=im.naturalWidth+" × "+im.naturalHeight;
+$("origFormat").textContent=mimeName(file.type);
+$("origStatus").textContent="Ready";
+$("imageWorkspace").style.display="block";
+photoZoom=1.18;photoX=0;photoY=0;
+$("smartZoom").checked=true;
+updateZoom();countryChanged();runChecker();drawPreview();
+showStatus("Image loaded successfully.","success");
+};
+im.onerror=function(){
+URL.revokeObjectURL(objectUrl);
+showStatus("Could not read this image. The file may be damaged or unsupported.","error");
+};
+im.src=objectUrl;
+}
 
 /* =========================================================
    IMAGE TABS
@@ -1225,156 +1301,17 @@ showStatus(
 ========================================================= */
 
 async function compressImage(){
-
-let target=
-Math.max(
-5,
-Number($("targetKB").value)||200
-)*1024;
-
-let mime=$("compressFormat").value;
-
-let w=imageObj.naturalWidth;
-let h=imageObj.naturalHeight;
-
-let canvas=document.createElement("canvas");
-
-canvas.width=w;
-canvas.height=h;
-
-let ctx=canvas.getContext("2d");
-
-if(mime==="image/jpeg"){
-
-ctx.fillStyle="#fff";
-ctx.fillRect(0,0,w,h);
-
-}
-
-ctx.drawImage(imageObj,0,0,w,h);
-
-let blob=null;
-
-
+const rawTarget=$("targetKB").value.trim(),targetKB=rawTarget?Number(rawTarget):200;
+if(!Number.isFinite(targetKB)||targetKB<5||targetKB>50000){showStatus("Enter a target size from 5 KB to 50,000 KB.","error");return;}
+const target=targetKB*1024,mime=$("compressFormat").value;let w=imageObj.naturalWidth,h=imageObj.naturalHeight;const canvas=document.createElement("canvas");let blob=null;
+function draw(){canvas.width=w;canvas.height=h;const ctx=canvas.getContext("2d");if(!ctx)throw new Error("Could not allocate the compression canvas.");if(mime==="image/jpeg"){ctx.fillStyle="#fff";ctx.fillRect(0,0,w,h);}ctx.drawImage(imageObj,0,0,w,h);}
+draw();
 if(mime==="image/png"){
-
-blob=await blobFromCanvas(canvas,mime);
-
-for(let i=0;i<12 && blob.size>target;i++){
-
-let ratio=Math.sqrt(target/blob.size)*.96;
-
-w=Math.max(1,Math.floor(w*ratio));
-h=Math.max(1,Math.floor(h*ratio));
-
-canvas.width=w;
-canvas.height=h;
-
-ctx=canvas.getContext("2d");
-
-ctx.drawImage(imageObj,0,0,w,h);
-
-blob=await blobFromCanvas(canvas,mime);
-
-}
-
+for(let pass=0;pass<9;pass++){blob=await blobFromCanvas(canvas,mime);if(blob.size<=target||pass===8)break;const factor=Math.min(.92,Math.sqrt(target/blob.size)*.94);w=Math.max(1,Math.floor(w*factor));h=Math.max(1,Math.floor(h*factor));draw();}
 }else{
-
-let low=.05;
-let high=.95;
-let best=null;
-
-for(let i=0;i<14;i++){
-
-let q=(low+high)/2;
-
-let b=await blobFromCanvas(
-canvas,
-mime,
-q
-);
-
-if(b.size<=target){
-
-best=b;
-low=q;
-
-}else{
-
-high=q;
-
+for(let pass=0;pass<7;pass++){let low=.2,high=.95,best=null,smallest=null;for(let i=0;i<9;i++){const q=(low+high)/2,candidate=await blobFromCanvas(canvas,mime,q);if(!smallest||candidate.size<smallest.size)smallest=candidate;if(candidate.size<=target){best=candidate;low=q;}else high=q;}blob=best||smallest;if(blob.size<=target||pass===6||w<=160||h<=160)break;const factor=Math.min(.86,Math.sqrt(target/blob.size)*.94);w=Math.max(1,Math.floor(w*factor));h=Math.max(1,Math.floor(h*factor));draw();}
 }
-
-}
-
-if(!best){
-
-for(let k=0;k<10&&!best;k++){
-
-w=Math.max(1,Math.floor(w*.86));
-h=Math.max(1,Math.floor(h*.86));
-
-canvas.width=w;
-canvas.height=h;
-
-ctx=canvas.getContext("2d");
-
-if(mime==="image/jpeg"){
-
-ctx.fillStyle="#fff";
-ctx.fillRect(0,0,w,h);
-
-}
-
-ctx.drawImage(imageObj,0,0,w,h);
-
-low=.05;
-high=.95;
-
-for(let i=0;i<12;i++){
-
-let q=(low+high)/2;
-
-let b=await blobFromCanvas(
-canvas,
-mime,
-q
-);
-
-if(b.size<=target){
-
-best=b;
-low=q;
-
-}else{
-
-high=q;
-
-}
-
-}
-
-}
-
-}
-
-blob=best||await blobFromCanvas(
-canvas,
-mime,
-.5
-);
-
-}
-
-
-showImageResult(
-blob,
-mime,
-canvas.width,
-canvas.height,
-target
-);
-
+showImageResult(blob,blob.type||mime,w,h,target);
 }
 
 
@@ -1383,58 +1320,18 @@ target
 ========================================================= */
 
 async function resizeImage(){
-
-let w=Math.max(
-1,
-Number($("resizeW").value)||600
-);
-
-let h=Math.max(
-1,
-Number($("resizeH").value)||600
-);
-
-if($("keepAspect").checked){
-
-let ratio=
-imageObj.naturalWidth/
-imageObj.naturalHeight;
-
-h=Math.round(w/ratio);
-
+let w,h;
+if($("resizeMode").value==="percent"){
+const percent=Number($("resizePercent").value);
+if(!Number.isFinite(percent)||percent<1||percent>500){showStatus("Enter a resize percentage from 1% to 500%.","error");return;}
+w=Math.round(imageObj.naturalWidth*percent/100);h=Math.round(imageObj.naturalHeight*percent/100);
+}else{
+w=Number($("resizeW").value);h=Number($("resizeH").value);
+if(!Number.isInteger(w)||!Number.isInteger(h)||w<1||h<1){showStatus("Enter positive width and height values.","error");return;}
+if($("keepAspect").checked){const ratio=imageObj.naturalWidth/imageObj.naturalHeight;if(resizeEdited==="height")w=Math.max(1,Math.round(h*ratio));else h=Math.max(1,Math.round(w/ratio));}
 }
-
-let canvas=document.createElement("canvas");
-
-canvas.width=w;
-canvas.height=h;
-
-let ctx=canvas.getContext("2d");
-
-ctx.fillStyle="#fff";
-ctx.fillRect(0,0,w,h);
-
-ctx.drawImage(
-imageObj,
-0,
-0,
-w,
-h
-);
-
-let blob=await blobFromCanvas(
-canvas,
-"image/jpeg",
-.92
-);
-
-showImageResult(
-blob,
-"image/jpeg",
-w,
-h
-);
-
+if(!Number.isInteger(w)||!Number.isInteger(h)||w<1||h<1||w>12000||h>12000||w*h>MAX_IMAGE_PIXELS){showStatus("These dimensions exceed the 12,000 px or 40 megapixel limit. Lower the size or percentage.","error");return;}
+const mime=imageFile.type,canvas=document.createElement("canvas");canvas.width=w;canvas.height=h;const ctx=canvas.getContext("2d");if(!ctx)throw new Error("Could not allocate the resize canvas.");if(mime==="image/jpeg"){ctx.fillStyle="#fff";ctx.fillRect(0,0,w,h);}ctx.drawImage(imageObj,0,0,w,h);const blob=await blobFromCanvas(canvas,mime,mime==="image/png"?undefined:.92);showImageResult(blob,blob.type||mime,w,h);
 }
 
 
@@ -1491,74 +1388,23 @@ h
    IMAGE RESULT
 ========================================================= */
 
-function showImageResult(
-blob,
-mime,
-w,
-h,
-target
-){
-
+function showImageResult(blob,mime,w,h,target){
+if(!blob)throw new Error("The image result is empty.");
 imageResultBlob=blob;
-
+const actualMime=blob.type||mime;
 $("imageResult").style.display="block";
-
 $("rOriginal").textContent=bytes(imageFile.size);
-
-$("rAfter").textContent=
-bytes(blob.size)+" • "+w+" × "+h;
-
-$("rFormat").textContent=mimeName(mime);
-
-$("rStatus").textContent=
-target && blob.size<=target
-?"Target reached"
-:"Ready";
-
-updateCheckerAfterResult(blob,mime,w,h);
-
-let canvas=$("resultCanvas");
-
-canvas.width=w;
-canvas.height=h;
-
-let ctx=canvas.getContext("2d");
-
-let url=URL.createObjectURL(blob);
-
-let im=new Image();
-
-im.onload=function(){
-
-ctx.drawImage(
-im,
-0,
-0,
-w,
-h
-);
-
-};
-
-im.src=url;
-
-let link=$("imageDownload");
-
-link.href=url;
-
-link.download=
-(
-imageFile
-?imageFile.name.replace(/\.[^/.]+$/,"")
-:"ImageKBFix"
-)+
-"_ImageKBFix."+
-ext(mime);
-
-$("imageResult").scrollIntoView({
-behavior:"smooth"
-});
-
+$("rAfter").textContent=bytes(blob.size)+" • "+w+" × "+h;
+const reduction=imageFile.size?((imageFile.size-blob.size)/imageFile.size)*100:0;
+$("rReduction").textContent=reduction>=0?reduction.toFixed(1)+"% smaller":Math.abs(reduction).toFixed(1)+"% larger";
+$("rFormat").textContent=mimeName(actualMime);
+$("rStatus").textContent=target?(blob.size<=target?"Target reached":"Best effort; target not reached"):"Ready";
+updateCheckerAfterResult(blob,actualMime,w,h);
+const canvas=$("resultCanvas");canvas.width=w;canvas.height=h;const ctx=canvas.getContext("2d");
+if(activeImageResultUrl)URL.revokeObjectURL(activeImageResultUrl);activeImageResultUrl=URL.createObjectURL(blob);
+const im=new Image();im.onload=function(){if(ctx)ctx.drawImage(im,0,0,w,h);};im.onerror=function(){showStatus("The preview could not be displayed, but the result can still be downloaded.","warn");};im.src=activeImageResultUrl;
+const link=$("imageDownload");link.href=activeImageResultUrl;link.download=(imageFile.name.replace(/\.[^/.]+$/," ").trim()||"image")+"_ImageKBFix."+ext(actualMime);
+$("imageResult").scrollIntoView({behavior:"smooth"});
 }
 
 
@@ -3117,6 +2963,61 @@ showStatus(
 ========================================================= */
 
 countryChanged();
+
+(function initSiteControls(){
+const resizeMode=document.getElementById("resizeMode");
+const resizePixels=document.getElementById("resizePixelFields");
+const resizePercent=document.getElementById("resizePercentField");
+function updateResizeMode(){const percent=resizeMode.value==="percent";resizePixels.hidden=percent;resizePercent.hidden=!percent;}
+resizeMode.addEventListener("change",updateResizeMode);
+updateResizeMode();
+document.getElementById("resizeW").addEventListener("input",function(){resizeEdited="width";if($("keepAspect").checked&&imageObj){const ratio=imageObj.naturalWidth/imageObj.naturalHeight;$("resizeH").value=Math.max(1,Math.round(Number(this.value)/ratio));}});
+document.getElementById("resizeH").addEventListener("input",function(){resizeEdited="height";if($("keepAspect").checked&&imageObj){const ratio=imageObj.naturalWidth/imageObj.naturalHeight;$("resizeW").value=Math.max(1,Math.round(Number(this.value)*ratio));}});
+const search=document.getElementById("toolSearch");
+const cards=Array.from(document.querySelectorAll(".tool-card"));
+const status=document.getElementById("toolSearchStatus");
+const empty=document.getElementById("toolEmptyState");
+if(search){
+search.addEventListener("input",function(){
+const query=search.value.trim().toLowerCase();
+let visible=0;
+cards.forEach(function(card){
+const text=(card.textContent+" "+(card.getAttribute("data-search")||"")).toLowerCase();
+const match=!query||text.includes(query);
+card.hidden=!match;
+if(match)visible++;
+});
+status.textContent=visible+" tool"+(visible===1?"":"s")+" found.";
+empty.hidden=visible!==0;
+});
+}
+const theme=document.getElementById("themeToggle");
+function updateThemeButton(){
+const dark=document.body.classList.contains("dark-mode");
+theme.textContent=dark?"Light mode":"Dark mode";
+theme.setAttribute("aria-pressed",dark?"true":"false");
+}
+if(theme){
+const saved=localStorage.getItem("imagekbfix-theme");
+if(saved==="dark")document.body.classList.add("dark-mode");
+updateThemeButton();
+theme.addEventListener("click",function(){
+const dark=document.body.classList.toggle("dark-mode");
+localStorage.setItem("imagekbfix-theme",dark?"dark":"light");
+updateThemeButton();
+});
+}
+document.querySelectorAll(".tool-card[data-pdf-target]").forEach(function(link){
+link.addEventListener("click",function(){
+const target=link.getAttribute("data-pdf-target");
+const tab=Array.from(document.querySelectorAll(".pdf-tab")).find(function(item){
+return (item.getAttribute("onclick")||"").indexOf("'"+target+"'")>=0;
+});
+if(tab)openPdfTool(target,tab);
+});
+});
+window.addEventListener("pagehide",function(){if(activeImageResultUrl)URL.revokeObjectURL(activeImageResultUrl);});
+})();
 
 </script>
 <footer style="text-align:center; padding:25px 10px; margin-top:30px; border-top:1px solid #ddd; font-size:14px; line-height:2;">
