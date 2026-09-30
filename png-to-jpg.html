@@ -3,10 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PNG to JPG Converter Online - Free | UploadReady</title>
-<meta name="description" content="Convert PNG images to JPG online for free. Convert your PNG directly in your browser and download the JPG file with UploadReady.">
+<title>PNG to JPG Converter Online - Free | ImageKBFix</title>
+<meta name="description" content="Convert PNG images to JPG online for free. Convert your PNG directly in your browser and download the JPG file with ImageKBFix.">
 <meta name="robots" content="index,follow">
-<link rel="canonical" href="https://ahmedkhaleeq2025-tech.github.io/uploadready/png-to-jpg.html">
+<link rel="canonical" href="https://ahmedkhaleeq2025-tech.github.io/imagekbfix/png-to-jpg.html">
+<meta property="og:title" content="PNG to JPG Converter Online - Free | ImageKBFix">
+<meta property="og:description" content="Convert PNG images to JPG online for free. Convert your PNG directly in your browser and download the JPG file with ImageKBFix.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ahmedkhaleeq2025-tech.github.io/imagekbfix/png-to-jpg.html">
 <style>
 *{box-sizing:border-box}
 body{margin:0;font-family:Arial,sans-serif;background:#f3f6fa;color:#172033}
@@ -15,12 +19,13 @@ header{background:linear-gradient(135deg,#111827,#2563eb);color:#fff;border-radi
 h1{margin:0 0 8px}header p{margin:0;color:#dbeafe}
 .card{background:#fff;border-radius:16px;padding:22px;margin-bottom:18px;box-shadow:0 4px 18px #00000012}
 .upload{display:block;border:2px dashed #94a3b8;border-radius:14px;padding:35px;text-align:center;cursor:pointer;background:#f8fafc}
-input[type=file]{display:none}
+input[type=file]{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);clip-path:inset(50%);white-space:nowrap;border:0}input[type=file]:focus-visible{position:static;width:auto;height:auto;clip:auto;clip-path:none;margin:0}
 button{border:0;border-radius:9px;padding:12px 18px;font-weight:700;cursor:pointer;margin:10px 6px 0 0}
 .primary{background:#2563eb;color:#fff}.secondary{background:#e2e8f0}
 .result{display:none}.preview{max-width:100%;max-height:350px;border-radius:10px}
 .info{background:#eff6ff;border-left:4px solid #2563eb;padding:12px;border-radius:8px}
 a{color:#2563eb}footer{text-align:center;color:#64748b}
+.download{display:inline-block;text-decoration:none;padding:12px 18px;border-radius:9px}.status-message{margin:12px 0;padding:12px;border-radius:8px;background:#eff6ff;color:#172033;line-height:1.5}.status-message.error{background:#fee2e2;color:#991b1b}.upload:focus-within{outline:3px solid #7c3aed;outline-offset:3px}label:focus-visible,a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #7c3aed;outline-offset:3px}
 </style>
 </head>
 <body>
@@ -31,12 +36,13 @@ a{color:#2563eb}footer{text-align:center;color:#64748b}
 </header>
 
 <section class="card">
-<label class="upload" for="file">
+<label class="upload" for="file" tabindex="0">
 <div style="font-size:38px">🔄</div>
 <div>Choose a PNG image</div>
 <small>PNG</small>
 </label>
-<input id="file" type="file" accept="image/png">
+<input id="file" type="file" accept="image/png" aria-label="Choose a PNG image">
+<p id="statusMessage" class="status-message" role="status" aria-live="polite">Choose an image to begin. Images are processed in your browser.</p>
 
 <div id="controls" style="display:none">
 <p id="filename"></p>
@@ -49,9 +55,7 @@ a{color:#2563eb}footer{text-align:center;color:#64748b}
 <h2>JPG image ready</h2>
 <p id="stats"></p>
 <img id="preview" class="preview" alt="Converted JPG preview"><br>
-<a id="download" download="converted-image.jpg">
-<button class="primary">Download JPG</button>
-</a>
+<a id="download" class="primary download" download="converted-image.jpg">Download JPG</a>
 </section>
 
 <section class="card">
@@ -62,68 +66,26 @@ a{color:#2563eb}footer{text-align:center;color:#64748b}
 <li>Preview the converted image.</li>
 <li>Download your JPG file.</li>
 </ol>
-<div class="info">Your image is converted in your browser and is not intentionally uploaded to an UploadReady server.</div>
+<div class="info">Your image is converted in your browser and is not intentionally uploaded to an ImageKBFix server.</div>
 
 <h2>Why convert PNG to JPG?</h2>
 <p>JPG can produce smaller files for many photographic images. JPG does not support transparent backgrounds, so transparent PNG areas are rendered against a white background during this conversion.</p>
 
-<p><a href="./">← Back to UploadReady</a></p>
+<p><a href="./">← Back to ImageKBFix</a></p>
 </section>
-<footer>© UploadReady</footer>
+<footer>© ImageKBFix</footer>
 </div>
 
 <script>
-const fileInput=document.getElementById('file');
-const controls=document.getElementById('controls');
-const filename=document.getElementById('filename');
-const result=document.getElementById('result');
-const preview=document.getElementById('preview');
-const download=document.getElementById('download');
-const stats=document.getElementById('stats');
-let img=null;
 
-fileInput.onchange=()=>{
- const file=fileInput.files[0];
- if(!file)return;
- const reader=new FileReader();
- reader.onload=e=>{
-  img=new Image();
-  img.onload=()=>{
-   filename.textContent=`Selected: ${file.name} • ${img.naturalWidth} × ${img.naturalHeight} pixels`;
-   controls.style.display='block';
-   result.style.display='none';
-  };
-  img.src=e.target.result;
- };
- reader.readAsDataURL(file);
-};
+const fileInput=document.getElementById("file"),controls=document.getElementById("controls"),filename=document.getElementById("filename"),result=document.getElementById("result"),preview=document.getElementById("preview"),download=document.getElementById("download"),stats=document.getElementById("stats"),statusMessage=document.getElementById("statusMessage");
+const MAX_BYTES=26214400,MAX_PIXELS=40000000;let image=null,sourceFile=null,resultUrl=null;
+function setStatus(text,error){statusMessage.textContent=text;statusMessage.classList.toggle("error",!!error);}
+function clearResult(){if(resultUrl){URL.revokeObjectURL(resultUrl);resultUrl=null;}preview.removeAttribute("src");download.removeAttribute("href");result.style.display="none";}
+fileInput.addEventListener("change",function(){clearResult();image=null;sourceFile=null;controls.style.display="none";const file=fileInput.files&&fileInput.files[0];if(!file)return;if(file.type!=="image/png"){fileInput.value="";setStatus("Choose a PNG image.",true);return;}if(!file.size||file.size>MAX_BYTES){fileInput.value="";setStatus("Choose a non-empty image smaller than 25 MB.",true);return;}const sourceUrl=URL.createObjectURL(file),candidate=new Image();candidate.onload=function(){URL.revokeObjectURL(sourceUrl);if(fileInput.files[0]!==file)return;if(candidate.naturalWidth*candidate.naturalHeight>MAX_PIXELS){fileInput.value="";setStatus("This image is larger than 40 megapixels and cannot be processed safely here.",true);return;}image=candidate;sourceFile=file;filename.textContent="Selected: "+file.name+" · "+candidate.naturalWidth+" × "+candidate.naturalHeight+" px";controls.style.display="block";setStatus("Image loaded successfully.",false);};candidate.onerror=function(){URL.revokeObjectURL(sourceUrl);if(fileInput.files[0]!==file)return;fileInput.value="";setStatus("Could not decode this image. The file may be damaged or unsupported.",true);};candidate.src=sourceUrl;});
+document.getElementById("convert").addEventListener("click",async function(){if(!image||!sourceFile){setStatus("Choose an image first.",true);return;}const canvas=document.createElement("canvas");canvas.width=image.naturalWidth;canvas.height=image.naturalHeight;const ctx=canvas.getContext("2d");if(!ctx){setStatus("Could not allocate a conversion canvas.",true);return;}ctx.fillStyle="#fff";ctx.fillRect(0,0,canvas.width,canvas.height);ctx.drawImage(image,0,0);try{const blob=await new Promise(function(resolve,reject){canvas.toBlob(function(value){if(value)resolve(value);else reject(new Error("The browser could not export this image format."));},"image/jpeg",.9);});clearResult();resultUrl=URL.createObjectURL(blob);preview.src=resultUrl;download.href=resultUrl;download.download=(sourceFile.name.replace(/\.[^.]+$/," ").trim()||"image")+"_converted.jpg";stats.textContent="JPG size: "+(blob.size/1024).toFixed(1)+" KB · Dimensions: "+canvas.width+" × "+canvas.height+" px";result.style.display="block";setStatus("Conversion complete.",false);result.scrollIntoView({behavior:"smooth"});}catch(error){setStatus(error.message||"Could not convert this image.",true);}});
+document.getElementById("reset").addEventListener("click",function(){clearResult();fileInput.value="";controls.style.display="none";image=null;sourceFile=null;filename.textContent="";setStatus("Choose an image to begin. Images are processed in your browser.",false);});window.addEventListener("pagehide",function(){if(resultUrl)URL.revokeObjectURL(resultUrl);});
 
-document.getElementById('convert').onclick=()=>{
- if(!img)return;
- const canvas=document.createElement('canvas');
- canvas.width=img.naturalWidth;
- canvas.height=img.naturalHeight;
- const ctx=canvas.getContext('2d');
- ctx.fillStyle='#ffffff';
- ctx.fillRect(0,0,canvas.width,canvas.height);
- ctx.drawImage(img,0,0);
-
- canvas.toBlob(blob=>{
-  const url=URL.createObjectURL(blob);
-  preview.src=url;
-  download.href=url;
-  stats.textContent=`JPG size: ${(blob.size/1024).toFixed(1)} KB • Dimensions: ${canvas.width} × ${canvas.height} pixels`;
-  result.style.display='block';
-  result.scrollIntoView({behavior:'smooth'});
- },'image/jpeg',0.9);
-};
-
-document.getElementById('reset').onclick=()=>{
- fileInput.value='';
- controls.style.display='none';
- result.style.display='none';
- img=null;
-};
 </script>
 </body>
 </html>

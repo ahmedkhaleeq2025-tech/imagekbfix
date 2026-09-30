@@ -3,46 +3,57 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Compress Image Online - Reduce Image Size | UploadReady</title>
+<title>Compress Image Online - Reduce Image Size | ImageKBFix</title>
 <meta name="description" content="Compress JPG, PNG and WebP images online. Reduce image file size directly in your browser and download the compressed image.">
 <meta name="robots" content="index,follow">
-<link rel="canonical" href="https://ahmedkhaleeq2025-tech.github.io/uploadready/compress-image.html">
+<link rel="canonical" href="https://ahmedkhaleeq2025-tech.github.io/imagekbfix/compress-image.html">
+<meta property="og:title" content="Compress Image Online - Reduce Image Size | ImageKBFix">
+<meta property="og:description" content="Compress JPG, PNG and WebP images online. Reduce image file size directly in your browser and download the compressed image.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ahmedkhaleeq2025-tech.github.io/imagekbfix/compress-image.html">
 <style>
 *{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f3f6fa;color:#172033}
 .wrap{max-width:850px;margin:auto;padding:20px}header{background:linear-gradient(135deg,#111827,#2563eb);color:#fff;border-radius:18px;padding:28px;margin-bottom:20px}
 h1{margin:0 0 8px}header p{margin:0;color:#dbeafe}.card{background:#fff;border-radius:16px;padding:22px;margin-bottom:18px;box-shadow:0 4px 18px #00000012}
 .upload{display:block;border:2px dashed #94a3b8;border-radius:14px;padding:35px;text-align:center;cursor:pointer;background:#f8fafc}
-input[type=file]{display:none}label{font-weight:700;display:block;margin:12px 0 7px}input[type=range]{width:100%}
+input[type=file]{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);clip-path:inset(50%);white-space:nowrap;border:0}input[type=file]:focus-visible{position:static;width:auto;height:auto;clip:auto;clip-path:none;margin:0}label{font-weight:700;display:block;margin:12px 0 7px}input[type=range]{width:100%}
 input[type=number]{padding:10px;border:1px solid #cbd5e1;border-radius:8px}button{border:0;border-radius:9px;padding:12px 18px;font-weight:700;cursor:pointer;margin:10px 6px 0 0}
 .primary{background:#2563eb;color:#fff}.secondary{background:#e2e8f0}.result{display:none}.preview{max-width:100%;max-height:300px;border-radius:10px}
 .info{background:#eff6ff;border-left:4px solid #2563eb;padding:12px;border-radius:8px}a{color:#2563eb}footer{text-align:center;color:#64748b}
+.download{display:inline-block;text-decoration:none;padding:12px 18px;border-radius:9px}.status-message{margin:12px 0;padding:12px;border-radius:8px;background:#eff6ff;color:#172033;line-height:1.5}.status-message.error{background:#fee2e2;color:#991b1b}.upload:focus-within{outline:3px solid #7c3aed;outline-offset:3px}label:focus-visible,a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #7c3aed;outline-offset:3px}
 </style>
 </head>
 <body><div class="wrap">
 <header><h1>Compress Image Online</h1><p>Reduce JPG, PNG or WebP image size directly in your browser.</p></header>
 <section class="card">
-<label class="upload" for="file"><div style="font-size:38px">🖼️</div><div>Choose an image</div><small>JPG, PNG or WebP</small></label>
-<input id="file" type="file" accept="image/jpeg,image/png,image/webp">
+<label class="upload" for="file" tabindex="0"><div style="font-size:38px">🖼️</div><div>Choose an image</div><small>JPG, PNG or WebP</small></label>
+<input id="file" type="file" accept="image/jpeg,image/png,image/webp" aria-label="Choose a JPG, PNG, or WebP image">
+<p id="statusMessage" class="status-message" role="status" aria-live="polite">Choose an image to begin. Images are processed in your browser.</p>
 <div id="controls" style="display:none">
 <label for="quality">Image quality: <span id="qv">75</span>%</label>
 <input id="quality" type="range" min="20" max="95" value="75">
-<label for="target">Optional target size (KB)</label><input id="target" type="number" min="10" placeholder="e.g. 200">
+<label for="target">Optional target size (KB)</label><input id="target" type="number" min="5" max="50000" placeholder="e.g. 200">
+<label for="format">Output format</label><select id="format"><option value="image/jpeg">JPG</option><option value="image/png">PNG</option><option value="image/webp">WebP</option></select>
+<p class="info">A target size is best-effort, not guaranteed. JPG does not preserve transparency; transparent pixels are placed on a white background.</p>
 <br><button class="primary" id="compress">Compress Image</button><button class="secondary" id="reset">Reset</button>
 </div></section>
 <section class="card result" id="result"><h2>Compressed image</h2><p id="stats"></p><img id="preview" class="preview" alt="Compressed image preview"><br>
-<a id="download" download="compressed-image.jpg"><button class="primary">Download Compressed Image</button></a></section>
+<a id="download" class="primary download" download="compressed-image.jpg">Download Compressed Image</a></section>
 <section class="card"><h2>How to reduce image size</h2><ol><li>Choose your image.</li><li>Adjust quality or enter a target size such as 200 KB.</li><li>Click Compress Image.</li><li>Download the result.</li></ol>
-<div class="info">Your image is processed in your browser and is not intentionally uploaded to an UploadReady server.</div>
+<div class="info">Your image is processed in your browser and is not intentionally uploaded to an ImageKBFix server.</div>
 <h2>Why compress an image?</h2><p>Compression can help when an online form or website has a file-size limit, and can reduce storage and bandwidth use.</p>
-<p><a href="./">← Back to UploadReady</a></p></section><footer>© UploadReady</footer>
+<p><a href="./">← Back to ImageKBFix</a></p></section><footer>© ImageKBFix</footer>
 </div>
 <script>
-const f=document.getElementById('file'),c=document.getElementById('controls'),q=document.getElementById('quality'),qv=document.getElementById('qv'),r=document.getElementById('result'),p=document.getElementById('preview'),d=document.getElementById('download'),s=document.getElementById('stats');
-let img=null,original=0;
-q.oninput=()=>qv.textContent=q.value;
-f.onchange=()=>{let file=f.files[0];if(!file)return;original=file.size;let rd=new FileReader();rd.onload=e=>{img=new Image();img.onload=()=>c.style.display='block';img.src=e.target.result};rd.readAsDataURL(file)};
-document.getElementById('compress').onclick=()=>{if(!img)return;let cv=document.createElement('canvas');cv.width=img.naturalWidth;cv.height=img.naturalHeight;cv.getContext('2d').drawImage(img,0,0);let quality=+q.value/100,target=+document.getElementById('target').value,tries=0;
-function run(){let url=cv.toDataURL('image/jpeg',quality);let b=atob(url.split(',')[1]),arr=new Uint8Array(b.length);for(let i=0;i<b.length;i++)arr[i]=b.charCodeAt(i);let blob=new Blob([arr],{type:'image/jpeg'});
-if(target&&blob.size>target*1024&&quality>.2&&tries++<12){quality-=.06;run();return}p.src=url;d.href=URL.createObjectURL(blob);stats.textContent=`Original: ${(original/1024).toFixed(1)} KB • Compressed: ${(blob.size/1024).toFixed(1)} KB • Reduced by ${Math.max(0,100-blob.size/original*100).toFixed(1)}%`;r.style.display='block';r.scrollIntoView({behavior:'smooth'})}run()};
-document.getElementById('reset').onclick=()=>{f.value='';c.style.display='none';r.style.display='none';img=null};
+
+const fileInput=document.getElementById("file"),controls=document.getElementById("controls"),qualityInput=document.getElementById("quality"),qualityValue=document.getElementById("qv"),targetInput=document.getElementById("target"),formatInput=document.getElementById("format"),result=document.getElementById("result"),preview=document.getElementById("preview"),download=document.getElementById("download"),stats=document.getElementById("stats"),statusMessage=document.getElementById("statusMessage");
+const MAX_BYTES=26214400,MAX_PIXELS=40000000;let image=null,sourceFile=null,resultUrl=null;
+function setStatus(text,error){statusMessage.textContent=text;statusMessage.classList.toggle("error",!!error);}
+function clearResult(){if(resultUrl){URL.revokeObjectURL(resultUrl);resultUrl=null;}preview.removeAttribute("src");download.removeAttribute("href");result.style.display="none";}
+function canvasBlob(canvas,type,quality){return new Promise(function(resolve,reject){canvas.toBlob(function(blob){if(blob)resolve(blob);else reject(new Error("The browser could not export this image format."));},type,quality);});}
+qualityInput.addEventListener("input",function(){qualityValue.textContent=qualityInput.value;});
+fileInput.addEventListener("change",function(){clearResult();image=null;sourceFile=null;controls.style.display="none";const file=fileInput.files&&fileInput.files[0];if(!file)return;if(!["image/jpeg","image/png","image/webp"].includes(file.type)){fileInput.value="";setStatus("Choose a JPG, PNG, or WebP image.",true);return;}if(!file.size||file.size>MAX_BYTES){fileInput.value="";setStatus("Choose a non-empty image smaller than 25 MB.",true);return;}const sourceUrl=URL.createObjectURL(file),candidate=new Image();candidate.onload=function(){URL.revokeObjectURL(sourceUrl);if(fileInput.files[0]!==file)return;if(candidate.naturalWidth*candidate.naturalHeight>MAX_PIXELS){fileInput.value="";setStatus("This image is larger than 40 megapixels and cannot be processed safely here.",true);return;}image=candidate;sourceFile=file;formatInput.value=file.type;controls.style.display="block";setStatus("Selected: "+file.name+" · "+candidate.naturalWidth+" × "+candidate.naturalHeight+" px",false);};candidate.onerror=function(){URL.revokeObjectURL(sourceUrl);if(fileInput.files[0]!==file)return;fileInput.value="";setStatus("Could not decode this image. The file may be damaged or unsupported.",true);};candidate.src=sourceUrl;});
+document.getElementById("compress").addEventListener("click",async function(){if(!image||!sourceFile){setStatus("Choose an image first.",true);return;}const rawTarget=targetInput.value.trim(),targetKB=rawTarget?Number(rawTarget):0;if(rawTarget&&(!Number.isFinite(targetKB)||targetKB<5||targetKB>50000)){setStatus("Enter a target size between 5 KB and 50,000 KB, or leave it blank.",true);return;}const mime=formatInput.value,baseQuality=Number(qualityInput.value)/100,target=targetKB?targetKB*1024:0,canvas=document.createElement("canvas");let width=image.naturalWidth,height=image.naturalHeight,blob=null,smallest=null;function draw(){canvas.width=width;canvas.height=height;const ctx=canvas.getContext("2d");if(!ctx)throw new Error("The browser could not allocate an image canvas.");if(mime==="image/jpeg"){ctx.fillStyle="#fff";ctx.fillRect(0,0,width,height);}ctx.drawImage(image,0,0,width,height);}try{setStatus("Compressing locally in your browser…",false);draw();if(!target){blob=await canvasBlob(canvas,mime,mime==="image/png"?undefined:baseQuality);}else if(mime==="image/png"){for(let pass=0;pass<9;pass++){blob=await canvasBlob(canvas,mime);if(!smallest||blob.size<smallest.size)smallest=blob;if(blob.size<=target||pass===8)break;const factor=Math.min(.92,Math.sqrt(target/blob.size)*.94);width=Math.max(1,Math.floor(width*factor));height=Math.max(1,Math.floor(height*factor));draw();}}else{for(let pass=0;pass<7;pass++){let low=.2,high=baseQuality,best=null;for(let i=0;i<9;i++){const q=(low+high)/2,candidate=await canvasBlob(canvas,mime,q);if(!smallest||candidate.size<smallest.size)smallest=candidate;if(candidate.size<=target){best=candidate;low=q;}else high=q;}if(best){blob=best;break;}const minimum=await canvasBlob(canvas,mime,.2);if(!smallest||minimum.size<smallest.size)smallest=minimum;if(pass===6||width<=160||height<=160)break;width=Math.max(1,Math.floor(width*.86));height=Math.max(1,Math.floor(height*.86));draw();}if(!blob)blob=smallest||await canvasBlob(canvas,mime,.2);}if(!blob)throw new Error("The browser returned an empty image.");clearResult();resultUrl=URL.createObjectURL(blob);preview.src=resultUrl;download.href=resultUrl;download.download=(sourceFile.name.replace(/\.[^.]+$/," ").trim()||"image")+"_compressed."+(blob.type==="image/png"?"png":blob.type==="image/webp"?"webp":"jpg");const reduction=sourceFile.size?((sourceFile.size-blob.size)/sourceFile.size)*100:0;stats.textContent="Original: "+(sourceFile.size/1024).toFixed(1)+" KB · Result: "+(blob.size/1024).toFixed(1)+" KB · "+(reduction>=0?reduction.toFixed(1)+"% smaller":Math.abs(reduction).toFixed(1)+"% larger")+" · "+canvas.width+" × "+canvas.height+" px";result.style.display="block";setStatus(target?(blob.size<=target?"Target reached.":"Best effort complete; the target size was not reached."):"Compression complete.",target&&blob.size>target);result.scrollIntoView({behavior:"smooth"});}catch(error){setStatus(error.message||"Could not compress this image.",true);}});
+document.getElementById("reset").addEventListener("click",function(){clearResult();fileInput.value="";targetInput.value="";qualityInput.value="75";qualityValue.textContent="75";image=null;sourceFile=null;controls.style.display="none";setStatus("Choose an image to begin. Images are processed in your browser.",false);});window.addEventListener("pagehide",function(){if(resultUrl)URL.revokeObjectURL(resultUrl);});
+
 </script></body></html>
